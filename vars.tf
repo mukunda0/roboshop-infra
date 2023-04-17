@@ -27,18 +27,22 @@ variable "instances" {
     user = {
       name = "rabbitmq"
       type = "t3.small"
+      password="roboshop123"
     }
     user = {
       name = "mysql"
       type = "t3.small"
+      password="Roboshop@1"
     }
     user = {
       name = "shipping"
       type = "t3.small"
+      password="Roboshop@1"
     }
     user = {
       name = "payment"
       type = "t3.small"
+      paasword="roboshop123"
     }
   }
 }
