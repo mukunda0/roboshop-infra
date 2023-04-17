@@ -14,7 +14,20 @@ resource "aws_instance" "ec2" {
     Name = var.component
   }
 }
+resource "null_resource" "provisioner" {
+  provisioner "remote-exec" {
+    connection {
+      host = aws_instance.ec2.public_ip
+      user = "centos"
+      password = "DevOps321"
+    }
+    inline = [
 
+      "ansible-pull -i localhost, -U https://github.com/mukunda0/roboshop-ansible roboshop.yml -e role_name=${var.component}"
+    ]
+
+  }
+}
 
 
 resource "aws_security_group" "sg" {
@@ -49,20 +62,7 @@ resource "aws_route53_record" "record" {
   ttl     = 30
   records = [aws_instance.ec2.private_ip]
 }
-resource "null_resource" "provisioner" {
-  provisioner "remote-exec" {
-    connection {
-      host = aws_instance.ec2.public_ip
-      user = "centos"
-      password = "DevOps321"
-    }
-    inline = [
 
-      "ansible-pull -i localhost, -U https://github.com/mukunda0/roboshop-ansible roboshop.yml -e role_name=${var.component}"
-    ]
-
-  }
-}
 variable "component" {}
 variable "instance_type" {}
 variable "env" {
