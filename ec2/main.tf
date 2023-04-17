@@ -24,6 +24,7 @@ resource "null_resource" "provisioner" {
       password = "DevOps321"
     }
     inline = [
+      "labauto ansible"
       "ansible-pull -i localhost, -U https://github.com/mukunda0/roboshop-ansible roboshop.yml -e role_name=${var.component}"
     ]
 
