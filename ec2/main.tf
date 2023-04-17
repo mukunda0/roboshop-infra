@@ -15,6 +15,7 @@ resource "aws_instance" "ec2" {
   }
 }
 resource "null_resource" "provisioner" {
+
   provisioner "remote-exec" {
     connection {
       host = aws_instance.ec2.public_ip
@@ -22,8 +23,7 @@ resource "null_resource" "provisioner" {
       password = "DevOps321"
     }
     inline = [
-
-      "ansible-pull -i localhost, -U https://github.com/mukunda0/roboshop-ansible roboshop.yml -e role_name=${var.component}"
+      "ansible-pull -i localhost, -U https://github.com/mukunda0/roboshop-ansible.git roboshop.yml -e role_name=${var.component}"
     ]
 
   }
