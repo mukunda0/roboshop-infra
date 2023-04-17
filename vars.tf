@@ -1,22 +1,22 @@
 variable "instances" {
   default = {
-    user = {
+    frontend = {
       name = "frontend"
       type = "t3.micro"
     }
-    user = {
+    mongodb = {
       name = "mongodb"
       type = "t3.micro"
     }
-    user = {
+    catalogue = {
       name = "catalogue"
       type = "t3.micro"
     }
-    user = {
+    redis = {
       name = "redis"
       type = "t3.micro"
     }
-    user = {
+    cart = {
       name = "cart"
       type = "t3.micro"
 
@@ -25,22 +25,22 @@ variable "instances" {
       name = "user"
       type = "t3.micro"
     }
-    user = {
+    rabbitmq= {
       name = "rabbitmq"
       type = "t3.micro"
       password="roboshop123"
     }
-    user = {
+    mysql = {
       name = "mysql"
       type = "t3.micro"
       password="Roboshop@1"
     }
-    user = {
+    shipping = {
       name = "shipping"
       type = "t3.micro"
       password="Roboshop@1"
     }
-    user = {
+    payment = {
       name = "payment"
       type = "t3.micro"
       paasword="roboshop123"
