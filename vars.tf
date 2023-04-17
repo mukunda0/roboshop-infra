@@ -43,7 +43,7 @@ variable "instances" {
     payment = {
       name = "payment"
       type = "t3.micro"
-      paasword="roboshop123"
+      password ="roboshop123"
     }
   }
 }
