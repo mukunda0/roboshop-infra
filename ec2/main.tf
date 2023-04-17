@@ -14,9 +14,7 @@ resource "aws_instance" "ec2" {
     Name = var.component
   }}
 
- #resource "null_resource"  "provisioner" {
-
-resource  provisioner "remote-exec" {
+resource  "provisioner" "remote-exec" {
     connection {
       host = aws_instance.ec2.public_ip
       user = "centos"
