@@ -29,8 +29,6 @@ resource "null_resource" "provisioner" {
       "ansible-pull -i localhost, -U https://github.com/mukunda0/roboshop-ansible roboshop.yml -e role_name=${var.component}"
     ]
 
-
-
   }
 }
 resource "aws_security_group" "sg" {
