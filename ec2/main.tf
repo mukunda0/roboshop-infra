@@ -44,11 +44,11 @@ resource "aws_security_group" "sg" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
-}
-tags = {
-  name ="${var.component}-${var.env}-sg"
-}
 
+  tags = {
+    name = "${var.component}-${var.env}-sg"
+  }
+}
 resource "aws_route53_record" "record" {
   zone_id = "Z08747613MFS3WNPFXV8R"
   name    = "${var.component}-dev.devops71a.online"
