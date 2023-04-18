@@ -46,7 +46,9 @@ resource "aws_security_group" "sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
-
+tags = {
+  name ="${var.component}-${var.env}-sg"
+}
 
 resource "aws_route53_record" "record" {
   zone_id = "Z08747613MFS3WNPFXV8R"
