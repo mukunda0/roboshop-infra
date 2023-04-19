@@ -1,4 +1,4 @@
 parameters = [
-  {name : "test1" ,type: "string",value = "hallo"}
+  {name : "test1" ,value = "hallo"}
 
 ]
