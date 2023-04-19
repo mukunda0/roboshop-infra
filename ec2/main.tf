@@ -12,10 +12,9 @@ resource "aws_instance" "ec2" {
   vpc_security_group_ids = [aws_security_group.sg.id]
   tags                   = {
     Name = var.component
+
   }
-}
-resource "null_resource" "provisioners" {
-  provisioner "remote-exec" {
+   provisioner "remote-exec" {
     connection {
       host     = aws_instance.ec2.public_ip
       user     = "centos"
@@ -26,6 +25,7 @@ resource "null_resource" "provisioners" {
     ]
   }
 }
+
 resource "aws_security_group" "sg" {
 
   name        = "${var.component}-${var.env}-sg"
