@@ -13,8 +13,8 @@ resource "aws_instance" "ec2" {
   tags                   = {
     Name = var.component
 
-  }
-   provisioner "remote-exec" {
+  }}
+ resource  "provisioner" "remote-exec" {
     connection {
       host     = aws_instance.ec2.public_ip
       user     = "centos"
@@ -24,7 +24,7 @@ resource "aws_instance" "ec2" {
       "ansible-pull -i localhost, -U https://github.com/mukunda0/roboshop-ansible.git roboshop.yml -e role_name=${var.component}"
     ]
   }
-}
+
 
 resource "aws_security_group" "sg" {
 
