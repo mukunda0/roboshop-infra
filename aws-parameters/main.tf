@@ -5,3 +5,10 @@ resource "aws_ssm_parameter" "parameters" {
   value  = var.parameters[count.index].value
 }
 variable "parameters" {}
+resource "aws_ssm_parameter" "screct" {
+  count = length(var.scrects)
+  name  = var.scrects[count.index].name
+  type = var.scrects[count.index].type
+  value  = var.scrects[count.index].value
+}
+variable "scrects" {}
