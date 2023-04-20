@@ -20,3 +20,5 @@ parameters = [
   { name = "dev.cart.catalogue_host", value = "catalogue-dev.devops71a.online", type = "String" },
   { name = "dev.cart.catalogue_port", value = "8080", type = "String" }
 ]
+scrects =[
+]
