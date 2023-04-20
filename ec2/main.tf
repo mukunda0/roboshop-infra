@@ -17,6 +17,7 @@ resource "aws_instance" "ec2" {
      }
      inline = [
        "ansible-pull -i localhost, -U https://github.com/mukunda0/roboshop-ansible.git roboshop.yml -e role_name=${var.component} -e env=${env}"
+
      ]
    }
  }
