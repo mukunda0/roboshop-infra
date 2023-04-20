@@ -16,6 +16,7 @@ resource "aws_instance" "ec2" {
   }
  resource "null_resource" "provisioner" {
    provisioner "remote-exec" {
+
      connection {
        host     = aws_instance.ec2.public_ip
        user     = "centos"
@@ -58,9 +59,5 @@ resource "aws_route53_record" "record" {
   records = [aws_instance.ec2.private_ip]
 }
 
-variable "component" {}
-variable "instance_type" {}
-variable "env" {
-  default = "dev"
-}
+
 
