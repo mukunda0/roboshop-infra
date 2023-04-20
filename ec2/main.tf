@@ -1,11 +1,3 @@
-data "aws_caller_identity" "current"{}
-data "aws_ami" "ami" {
-  most_recent = true
-  name_regex  = "devops-practice-with-ansible"
-  owners      = [data.aws_caller_identity.current.account_id]
-}
-
-
 resource "aws_instance" "ec2" {
   ami                    = data.aws_ami.ami.image_id
   instance_type          = var.instance_type
@@ -59,5 +51,33 @@ resource "aws_route53_record" "record" {
   records = [aws_instance.ec2.private_ip]
 }
 
+resource "aws_iam_policy" "ssm_policy" {
+  name        = "$(var.env)-$(var.component)-ssm"
+  path        = "/"
+  description = "$(var.env)-$(var.component)-ssm"
 
+
+  policy = jsonencode({
+    "Version": "2012-10-17",
+    "Statement": [
+  {
+    "Sid": "VisualEditor0",
+    "Effect": "Allow",
+    "Action": [
+    "ssm:GetParameterHistory",
+    "ssm:GetParametersByPath",
+    "ssm:GetParameters",
+    "ssm:GetParameter"
+  ],
+    "Resource": "arn:aws:ssm:us-east-1:456497717300:parameter/$(var.env)-$(var.component)*"
+  },
+  {
+    "Sid": "VisualEditor1",
+    "Effect": "Allow",
+    "Action": "ssm:DescribeParameters",
+    "Resource": "*"
+  }
+  ]
+  })
+}
 
