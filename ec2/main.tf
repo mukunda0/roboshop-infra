@@ -2,7 +2,7 @@ resource "aws_instance" "ec2" {
   ami                    = data.aws_ami.ami.image_id
   instance_type          = var.instance_type
   vpc_security_group_ids = [aws_security_group.sg.id]
-  iam_instance_profile = "$(var.env)-$(var.component)-role"
+  iam_instance_profile = "${var.env}-${var.component}-role"
   tags                   = {
     Name = var.component
   }
@@ -53,9 +53,9 @@ resource "aws_route53_record" "record" {
 }
 
 resource "aws_iam_policy" "ssm_policy" {
-  name        = "$(var.env)-$(var.component)-ssm"
+  name        = "${var.env}-${var.component}-ssm"
   path        = "/"
-  description = "$(var.env)-$(var.component)-ssm"
+  description = "${var.env}-${var.component}-ssm"
 
 
   policy = jsonencode({
@@ -82,7 +82,7 @@ resource "aws_iam_policy" "ssm_policy" {
   })
 }
 resource "aws_iam_role" "role" {
-  name = "$(var.env)-$(var.component)-role"
+  name = "${var.env}-${var.component}-role"
 
   assume_role_policy = jsonencode({
     "Version": "2012-10-17",
@@ -103,7 +103,7 @@ resource "aws_iam_role" "role" {
 }
 
 resource "aws_iam_instance_profile" "profile" {
-  name = "$(var.env)-$(var.component)-role"
+  name = "${var.env}-${var.component}-role"
   role = aws_iam_role.role.name
 }
 resource "aws_iam_role_policy_attachment" "policy-attach" {
