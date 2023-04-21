@@ -21,6 +21,7 @@ resource "aws_spot_instance_request" "node2" {
     name ="prometheus-test-node"
   }
 }
+
 resource "aws_ec2_tag" "node2" {
   resource_id = aws_spot_instance_request.node2.spot_instance_id
   key         = "Name"
